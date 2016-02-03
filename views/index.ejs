@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+
+    <meta property="og:title" content="CashIT - Salarii, nu povesti!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.cash-it.xyz/" />
+    <meta property="og:image" content="http://www.cash-it.xyz/assets/img/favicon.jpg" />
+    <meta property="fb:app_id" content="142352406147295" />
 
     <title>CashIT - Salarii, nu povesti!</title>
 
@@ -18,9 +24,37 @@
     <link href="assets/css/style.css" rel="stylesheet" />    
     <!-- Google	Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+
+    <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-73269280-1', 'auto');
+          ga('send', 'pageview');
+    </script>
 </head>
 
 <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '142352406147295',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <div class="navbar navbar-inverse navbar-fixed-top " id="menu">
         <div class="container">
             <div class="navbar-header">
@@ -88,7 +122,7 @@
                         Vrei sa stii care sunt adevaratele salarii din industria IT? Nu stii ce suma sa negociezi pentru noul loc de munca? Suntem bombardati cu informatii legate de salariile programatorilor dar nu avem o imagine de ansamblu a acestei piete. Contribuie in mod anonim la baza noastra de date, compara salarii si analizeaza-ti optiunile! 
                     </p>
                     <br>
-                    <img src="assets/img/favicon.png"/>
+                    <img src="assets/img/favicon.jpg"/>
                     <br>
                     <br>
             </div>
@@ -277,7 +311,7 @@
         $(document).ready(function() 
         { 
             $("#companyTable").tablesorter(); 
-        });
+        }); 
     </script>
 
 </body>
