@@ -6,7 +6,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>CashIT - Salarii nu povesti</title>
+    <title>CashIT - Salarii, nu povesti!</title>
 
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
                         <div class="flexslider set-flexi" id="main-section" >
                             <ul class="slides move-me">
                                 <li>
-                                    <h3>Salarii nu povesti</h3>
+                                    <h3>Salarii, nu povesti!</h3>
                                     <h1>Unde lucram si pe cat?</h1>
                                     <a  href="#view-salaries-sec" class="btn btn-info btn-lg" >
                                     CAUTA SALARII 
@@ -85,7 +85,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
                 <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line"> DESPRE NOI </h1>
                     <p data-scroll-reveal="enter from the bottom after 0.3s" >
-                        Vrei sa stii care sunt adevaratele salarii din industria IT? Nu stii ce suma se negociezi pentru noul loc de munca? Suntem bombardati cu informatii legate de salariile programatorilor dar nu avem o imagine de ansamblu a acestei piete. Contribuie in mod anonim la baza noastra de date, compara salarii si analizeaza-ti optiunile! 
+                        Vrei sa stii care sunt adevaratele salarii din industria IT? Nu stii ce suma sa negociezi pentru noul loc de munca? Suntem bombardati cu informatii legate de salariile programatorilor dar nu avem o imagine de ansamblu a acestei piete. Contribuie in mod anonim la baza noastra de date, compara salarii si analizeaza-ti optiunile! 
                     </p>
                     <br>
                     <img src="assets/img/favicon.png"/>
@@ -106,7 +106,7 @@
                                 <tr>
                                     <td style='padding:2px 2px 2px 2px'>
                                         <input list="companies" name="searchCompanyName" class="form-control" 
-                                            placeholder="Nume Companie" />
+                                            placeholder="Oricare Companie" />
                                         <datalist id="companies">
                                             <% for (var index = 0; index < companyNames.length; index++)  { %>
                                                 <option value="<%= companyNames[index].companyName %>">
@@ -115,7 +115,7 @@
                                     </td>
                                     <td style='padding:2px 2px 2px 2px'>
                                         <input list="jobLocations" name="searchLocation" class="form-control" 
-                                            placeholder="Oras" />
+                                            placeholder="Oricare Oras" />
                                         <datalist id="jobLocations">
                                             <% for (var index = 0; index < jobLocations.length; index++)  { %>
                                                 <option value="<%= jobLocations[index].location %>">
@@ -124,7 +124,7 @@
                                     </td>
                                     <td style='padding:2px 2px 2px 2px'>
                                         <input list="positions" name="searchPosition" class="form-control" 
-                                            placeholder="Pozitie" />
+                                            placeholder="Oricare Pozitie" />
                                         <datalist id="positions">
                                             <% for (var index = 0; index < positions.length; index++)  { %>
                                                 <option value="<%= positions[index].position %>">
@@ -144,7 +144,7 @@
                             <thead>
                                 <tr>
                                     <th style="text-align:center;">Companie ▲ ▼</th>
-                                    <th style="text-align:center;">Salariu (NET in lei) ▲ ▼</th>
+                                    <th style="text-align:center;">Salariu lunar (NET in lei) ▲ ▼</th>
                                     <th style="text-align:center;">Pozitie ▲ ▼</th>
                                     <th style="text-align:center;">Oras ▲ ▼</th>
                                     <th style="text-align:center;">PFA ▲ ▼</th>
@@ -217,7 +217,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" name="salary" class="form-control" 
-                                    placeholder="* Salariu net in LEI" />
+                                    placeholder="* Salariu lunar net in LEI" />
                             </div>
                              <div class="form-group">
                                 <input list="jobLocations" name="jobLocation" class="form-control" 

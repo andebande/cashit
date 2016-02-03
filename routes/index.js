@@ -56,7 +56,7 @@ function processIndex(request, response) {
             goToSection = '#add-salary-sec';
         } 
         else if (!isValidString(request.body.jobLocation) || request.body.jobLocation == '') {
-            message = 'Introduceti o locatie valida.';
+            message = 'Introduceti un oras valid.';
             goToSection = '#add-salary-sec';
         } 
         else {
@@ -72,7 +72,7 @@ function processIndex(request, response) {
         var yearsOfExperience = stripString(request.body.yearsOfExperience);
         var jobLocation = stripString(request.body.jobLocation);
         var isPFA = (request.body.isPFA == 'on');
-        var hasDiploma = (request.body.isPFA == 'on');
+        var hasDiploma = (request.body.hasDiploma == 'on');
         var year = new Date().getFullYear();
         var submitterIP = '0'; //request.connection.remoteAddress 
 
