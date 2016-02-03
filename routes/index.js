@@ -8,6 +8,8 @@ var connection = mysql.createConnection({
     database: 'cash_it'
 });
 
+var errorStyle = 'border-color: #E5503F;';
+
 function isPositiveInteger(str) {
     return /^\d+$/.test(str);
 }
@@ -32,38 +34,68 @@ function processIndex(request, response) {
     var searchResults = [];
     var showTable = 'none';
 
-    var message = '';
+    var formData = {
+        companyName: {value:'', style:''},
+        position: {value:'', style:''},
+        jobLocation: {value:'', style:''},
+        salary: {value:'', style:''},
+        experience: {value:'', style:''},
+        hasDiploma: {value:'', style:''},
+        isPFA: {value:'', style:''}
+
+    };
+
+    var message = {value:'', style:''};
     var searchMessage = '';
-    var isOk = false;
+    var isValidForm = true;
 
     var done = after(4, finished);
 
     if (request.body['submit_salary']) {
         if (!isValidString(request.body.companyName) || request.body.companyName == '') {
-            message = 'Introduceti un nume valid de companie.';
-            goToSection = '#add-salary-sec';
-        } 
-        else if (!isValidString(request.body.position) || request.body.position == '') {
-            message = 'Introduceti o potizie valida.';
-            goToSection = '#add-salary-sec';
-        } 
-        else if (!isPositiveInteger(request.body.salary) || request.body.salary == '') {
-            message = 'Introduceti un salariu valid.'; 
-            goToSection = '#add-salary-sec';
-        } 
-        else if (!isPositiveInteger(request.body.yearsOfExperience) || request.body.yearsOfExperience == '') {
-            message = 'Introduceti un numar de ani de experienta valid.';
-            goToSection = '#add-salary-sec';
-        } 
-        else if (!isValidString(request.body.jobLocation) || request.body.jobLocation == '') {
-            message = 'Introduceti un oras valid.';
-            goToSection = '#add-salary-sec';
+            formData.companyName.style = errorStyle;
+            formData.companyName.value = '';
+            isValidForm = false;
         } 
         else {
-            message = 'Salariul a fost salvat.';
-            goToSection = '#add-salary-sec';
+            formData.companyName.value = request.body.companyName;
+        }
+        
+        if (!isValidString(request.body.position) || request.body.position == '') {
+            formData.position.style = errorStyle;
+            formData.position.value = '';
+            isValidForm = false;
+        } 
+        else {
+            formData.position.value = request.body.position;
+        }
 
-            isOk = true;
+        
+        if (!isPositiveInteger(request.body.salary) || request.body.salary == '') {
+            formData.salary.style = errorStyle;
+            formData.salary.value = '';
+            isValidForm = false;
+        } 
+        else {
+            formData.salary.value = request.body.salary;
+        }
+        
+        if (!isPositiveInteger(request.body.yearsOfExperience) || request.body.yearsOfExperience == '') {
+            formData.experience.style = errorStyle;
+            formData.experience.value = '';
+            isValidForm = false;
+        } 
+        else {
+            formData.experience.value = request.body.yearsOfExperience;
+        }
+        
+        if (!isValidString(request.body.jobLocation) || request.body.jobLocation == '') {
+            formData.jobLocation.style = errorStyle;
+            formData.jobLocation.value = '';
+            isValidForm = false;
+        } 
+        else {
+            formData.jobLocation.value = request.body.jobLocation;
         }
 
         var companyName = stripString(request.body.companyName);
@@ -80,7 +112,12 @@ function processIndex(request, response) {
                     + ")VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s);",
                     salary, formatString(companyName), formatString(position), formatString(jobLocation), yearsOfExperience, isPFA, hasDiploma, year, submitterIP);
         
-        if (isOk == true) {                                                   
+        if (isValidForm == true) {   
+            message.value = 'Salariul a fost salvat ✓';
+            message.style = 'color:#00b386;';
+
+            goToSection = '#add-salary-sec';
+
             connection.query(query, function(error, result) {
                 if (error) {
                     console.log('An error has occcurred: %s', error);
@@ -91,6 +128,11 @@ function processIndex(request, response) {
         }
         else
         {
+            message.value = 'Salariul contine date eronate';
+            message.style = 'color:#cc0000;';
+
+            goToSection = '#add-salary-sec';
+
             done();
         }
     } 
@@ -195,8 +237,11 @@ function processIndex(request, response) {
             jobLocations : jobLocations,
             searchResults : searchResults,
             searchMessage : searchMessage,
-            showTable : showTable
+            showTable : showTable,
+            formData : formData
         });
+
+        console.log(message.style);
     }
 }
 

@@ -202,13 +202,16 @@
                 <div class="row set-row-pad"  data-scroll-reveal="enter from the bottom after 0.5s" >
                     <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                         <form action="/index#add-salary-sec" method="post">
-                            <div class="form-group">
-                                <input list="companies" name="companyName" class="form-control" 
-                                    placeholder="* Nume Companie" />
+                            <div class="for-group">
+                                <p align="center" style="<%= submitMessage.style %>"><%= submitMessage.value %></p>
                             </div>
                             <div class="form-group">
-                                <input list="positions" name="position" class="form-control" 
-                                    placeholder="* Pozitie" />
+                                <input list="companies" name="companyName" class="form-control" value="<%= formData.companyName.value %>"
+                                    placeholder="* Nume Companie" style="<%= formData.companyName.style %>"/>
+                            </div>
+                            <div class="form-group">
+                                <input list="positions" name="position" class="form-control" value="<%= formData.position.value %>"
+                                    placeholder="* Pozitie" style="<%= formData.position.style %>"/>
                                 <datalist id="positions">
                                     <% for (var index = 0; index < positions.length; index++)  { %>
                                         <option value="<%= positions[index].position %>">
@@ -216,16 +219,16 @@
                                 </datalist>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="salary" class="form-control" 
-                                    placeholder="* Salariu lunar net in LEI" />
+                                <input type="text" name="salary" class="form-control" value="<%= formData.salary.value %>"
+                                    placeholder="* Salariu lunar net in LEI" style="<%= formData.salary.style %>"/> 
                             </div>
                              <div class="form-group">
-                                <input list="jobLocations" name="jobLocation" class="form-control" 
-                                    placeholder="* Oras" />
+                                <input list="jobLocations" name="jobLocation" class="form-control" value="<%= formData.jobLocation.value %>"
+                                    placeholder="* Oras" style="<%= formData.jobLocation.style %>"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="yearsOfExperience"
-                                    class="form-control" placeholder="* Ani Experienta" />
+                                <input type="text" name="yearsOfExperience" class="form-control" value="<%= formData.experience.value %>" 
+                                    placeholder="* Ani Experienta" style="<%= formData.experience.style %>"/>
                             </div>
                             <div class="form-group">
                                 <table width ="30%">
@@ -243,9 +246,6 @@
                             <div class="form-group">
                                 <input type="submit" name="submit_salary" 
                                     class="btn btn-info btn-block btn-lg" value="SALVEAZA SALARIUL">
-                            </div>
-                            <div class="for-group">
-                                <p align="center"><%= submitMessage %></p>
                             </div>
                         </form>
                     </div>      
