@@ -144,7 +144,7 @@ function processIndex(request, response) {
 
         var executeQuery = false;
 
-        query = "SELECT * FROM SALARIES WHERE ";
+        query = "SELECT * FROM salaries WHERE ";
 
         if (companyName.length > 0 && isValidString(companyName)) {
             query += "companyName =" + formatString(companyName) + " ";
