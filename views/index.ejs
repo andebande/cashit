@@ -207,11 +207,11 @@
                             </div>
                             <div class="form-group">
                                 <input list="companies" name="companyName" class="form-control" value="<%= formData.companyName.value %>"
-                                    placeholder="* Nume Companie" style="<%= formData.companyName.style %>"/>
+                                    placeholder="* Nume Companie" style="<%= formData.companyName.style %>" maxlength="100"/>
                             </div>
                             <div class="form-group">
                                 <input list="positions" name="position" class="form-control" value="<%= formData.position.value %>"
-                                    placeholder="* Pozitie" style="<%= formData.position.style %>"/>
+                                    placeholder="* Pozitie" style="<%= formData.position.style %>" maxlength="100"/>
                                 <datalist id="positions">
                                     <% for (var index = 0; index < positions.length; index++)  { %>
                                         <option value="<%= positions[index].position %>">
@@ -220,15 +220,15 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" name="salary" class="form-control" value="<%= formData.salary.value %>"
-                                    placeholder="* Salariu lunar net in LEI" style="<%= formData.salary.style %>"/> 
+                                    placeholder="* Salariu lunar net in LEI" style="<%= formData.salary.style %>" maxlength="100"/> 
                             </div>
                              <div class="form-group">
                                 <input list="jobLocations" name="jobLocation" class="form-control" value="<%= formData.jobLocation.value %>"
-                                    placeholder="* Oras" style="<%= formData.jobLocation.style %>"/>
+                                    placeholder="* Oras" style="<%= formData.jobLocation.style %>" maxlength="100"/>
                             </div>
                             <div class="form-group">
                                 <input type="text" name="yearsOfExperience" class="form-control" value="<%= formData.experience.value %>" 
-                                    placeholder="* Ani Experienta" style="<%= formData.experience.style %>"/>
+                                    placeholder="* Ani Experienta" style="<%= formData.experience.style %>" maxlength="100"/>
                             </div>
                             <div class="form-group">
                                 <table width ="30%">

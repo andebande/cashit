@@ -27,7 +27,7 @@ function stripString(str) {
 }
 
 function processIndex(request, response) {
-
+    console.log(request.body);
     var companyNames = {};
     var positions = {};
     var jobLocations = {};
@@ -107,11 +107,11 @@ function processIndex(request, response) {
         var hasDiploma = (request.body.hasDiploma == 'on');
         var year = new Date().getFullYear();
         var submitterIP = '0'; //request.connection.remoteAddress 
-
+        
         var query = util.format("INSERT INTO salaries(salary, companyName, position, location, yearsOfExperience, isPFA, hasDiploma, year, submitterIP" 
                     + ")VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s);",
                     salary, formatString(companyName), formatString(position), formatString(jobLocation), yearsOfExperience, isPFA, hasDiploma, year, submitterIP);
-        
+        console.log(query);
         if (isValidForm == true) {   
             message.value = 'Salariul a fost salvat ✓';
             message.style = 'color:#00b386;';
@@ -240,8 +240,6 @@ function processIndex(request, response) {
             showTable : showTable,
             formData : formData
         });
-
-        console.log(message.style);
     }
 }
 
