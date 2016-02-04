@@ -34,6 +34,12 @@ function processIndex(request, response) {
     var searchResults = [];
     var showTable = 'none';
 
+    var searchData = {
+        searchLocation :'',
+        searchCompanyName : '',
+        searchPosition : ''
+    };
+
     var formData = {
         companyName: {value:'', style:''},
         position: {value:'', style:''},
@@ -161,6 +167,8 @@ function processIndex(request, response) {
             query += "companyName LIKE" + formatString('%' + companyName + '%') + " ";
 
             executeQuery = true;
+
+            searchData.searchCompanyName = companyName;
         }
 
         if (location.length > 0 && isValidString(location)) {
@@ -171,6 +179,8 @@ function processIndex(request, response) {
             query += "location LIKE" + formatString('%' + location + '%') + " ";
 
             executeQuery = true;
+
+            searchData.searchLocation = location;
         }
 
         if (position.length > 0 && isValidString(position)) {
@@ -181,6 +191,8 @@ function processIndex(request, response) {
             query += "position LIKE" + formatString('%' + position + '%') + " ";
 
             executeQuery = true;
+
+            searchData.searchPosition = position;
         }
 
         query += "ORDER BY salary DESC;";
@@ -221,7 +233,8 @@ function processIndex(request, response) {
             searchResults : searchResults,
             searchMessage : searchMessage,
             showTable : showTable,
-            formData : formData
+            formData : formData,
+            searchData : searchData
         });
     }
 }
