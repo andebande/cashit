@@ -147,7 +147,7 @@ function processIndex(request, response) {
         query = "SELECT * FROM salaries WHERE ";
 
         if (companyName.length > 0 && isValidString(companyName)) {
-            query += "companyName =" + formatString(companyName) + " ";
+            query += "companyName SOUNDS LIKE" + formatString(companyName) + " ";
 
             executeQuery = true;
         }
@@ -157,7 +157,7 @@ function processIndex(request, response) {
                 query += "AND ";
             }
 
-            query += "location =" + formatString(location) + " ";
+            query += "location SOUNDS LIKE" + formatString(location) + " ";
 
             executeQuery = true;
         }
@@ -167,7 +167,7 @@ function processIndex(request, response) {
                 query += "AND ";
             }
 
-            query += "position =" + formatString(position) + " ";
+            query += "position SOUNDS LIKE" + formatString(position) + " ";
 
             executeQuery = true;
         }
