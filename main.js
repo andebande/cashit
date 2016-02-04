@@ -20,6 +20,7 @@ var events = require('events');
 var EventEmitter = new events.EventEmitter();
 
 require('./routes/index')(app, EventEmitter);
+require('./routes/data')(app, EventEmitter);
 
 app.listen(8080);
 console.log("Server running at http://localhost:8080/");

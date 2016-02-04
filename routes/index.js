@@ -49,7 +49,7 @@ function processIndex(request, response) {
     var searchMessage = '';
     var isValidForm = true;
 
-    var done = after(4, finished);
+    var done = after(1, finished);
 
     if (request.body['submit_salary']) {
         if (!isValidString(request.body.companyName) || request.body.companyName == '') {
@@ -118,6 +118,17 @@ function processIndex(request, response) {
 
             goToSection = '#add-salary-sec';
 
+            formData = {
+                companyName: {value:'', style:''},
+                position: {value:'', style:''},
+                jobLocation: {value:'', style:''},
+                salary: {value:'', style:''},
+                experience: {value:'', style:''},
+                hasDiploma: {value:'', style:''},
+                isPFA: {value:'', style:''}
+
+            };
+
             connection.query(query, function(error, result) {
                 if (error) {
                     console.log('An error has occcurred: %s', error);
@@ -162,7 +173,7 @@ function processIndex(request, response) {
             executeQuery = true;
         }
 
-         if (position.length > 0 && isValidString(position)) {
+        if (position.length > 0 && isValidString(position)) {
             if (companyName.length > 0 || location.length > 0) {
                 query += "AND ";
             }
@@ -171,6 +182,8 @@ function processIndex(request, response) {
 
             executeQuery = true;
         }
+
+        query += "ORDER BY salary DESC;";
         
         if(executeQuery == true)
         {
@@ -201,40 +214,10 @@ function processIndex(request, response) {
         done();
     }
     
-    connection.query('SELECT DISTINCT companyName FROM salaries', function(error, result) {
-        if (error) {
-            console.log('An error has occcurred: %s', error);
-        }
-
-        companyNames = JSON.parse(JSON.stringify(result));
-        done();
-    });
-
-    connection.query('SELECT DISTINCT position FROM salaries', function(error, result) {
-        if (error) {
-            console.log('An error has occcurred: %s', error);
-        }
-
-        positions = JSON.parse(JSON.stringify(result));
-        done();
-    });
-
-      connection.query('SELECT DISTINCT location FROM salaries', function(error, result) {
-        if (error) {
-            console.log('An error has occcurred: %s', error);
-        }
-
-        jobLocations = JSON.parse(JSON.stringify(result));
-        done();
-    });
-     
     function finished() {
-        response.render('index', {
+       response.render('index', {
             error: '',
             submitMessage: message,
-            companyNames : companyNames,
-            positions : positions,
-            jobLocations : jobLocations,
             searchResults : searchResults,
             searchMessage : searchMessage,
             showTable : showTable,

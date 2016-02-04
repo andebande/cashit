@@ -25,7 +25,9 @@
     <!-- FLEXSLIDER CSS -->
     <link href="assets/css/flexslider.css" rel="stylesheet" />
     <!-- CUSTOM STYLE CSS -->
-    <link href="assets/css/style.css" rel="stylesheet" />    
+    <link href="assets/css/style.css" rel="stylesheet" /> 
+    <!-- EASY AUTOCOMPLETE -->
+    <link href="assets/css/jquery.auto-complete.css" rel="stylesheet" />   
     <!-- Google	Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
 
@@ -143,31 +145,16 @@
                             <table width="70%" class="tablesorter" id="resultTable" align="center">
                                 <tr>
                                     <td style='padding:2px 2px 2px 2px'>
-                                        <input list="companies" name="searchCompanyName" class="form-control" 
+                                        <input id="searchCompanyName" name="searchCompanyName" class="form-control" 
                                             placeholder="Oricare Companie" />
-                                        <datalist id="companies">
-                                            <% for (var index = 0; index < companyNames.length; index++)  { %>
-                                                <option value="<%= companyNames[index].companyName %>">
-                                            <% } %>
-                                        </datalist>
                                     </td>
                                     <td style='padding:2px 2px 2px 2px'>
-                                        <input list="jobLocations" name="searchLocation" class="form-control" 
+                                        <input id="searchLocation" name="searchLocation" class="form-control" 
                                             placeholder="Oricare Oras" />
-                                        <datalist id="jobLocations">
-                                            <% for (var index = 0; index < jobLocations.length; index++)  { %>
-                                                <option value="<%= jobLocations[index].location %>">
-                                            <% } %>
-                                        </datalist>
                                     </td>
                                     <td style='padding:2px 2px 2px 2px'>
-                                        <input list="positions" name="searchPosition" class="form-control" 
+                                        <input id="searchPosition" name="searchPosition" class="form-control" 
                                             placeholder="Oricare Pozitie" />
-                                        <datalist id="positions">
-                                            <% for (var index = 0; index < positions.length; index++)  { %>
-                                                <option value="<%= positions[index].position %>">
-                                            <% } %>
-                                        </datalist>
                                     </td>
                                     <td>
                                         <input type="submit" name="submit_search_query" 
@@ -244,24 +231,19 @@
                                 <p align="center" style="<%= submitMessage.style %>"><%= submitMessage.value %></p>
                             </div>
                             <div class="form-group">
-                                <input list="companies" name="companyName" class="form-control" value="<%= formData.companyName.value %>"
+                                <input id="companyName" name="companyName" class="form-control" value="<%= formData.companyName.value %>"
                                     placeholder="* Nume Companie" style="<%= formData.companyName.style %>" maxlength="100"/>
                             </div>
                             <div class="form-group">
-                                <input list="positions" name="position" class="form-control" value="<%= formData.position.value %>"
+                                <input id="position" name="position" class="form-control" value="<%= formData.position.value %>"
                                     placeholder="* Pozitie" style="<%= formData.position.style %>" maxlength="100"/>
-                                <datalist id="positions">
-                                    <% for (var index = 0; index < positions.length; index++)  { %>
-                                        <option value="<%= positions[index].position %>">
-                                    <% } %>
-                                </datalist>
                             </div>
                             <div class="form-group">
                                 <input type="text" name="salary" class="form-control" value="<%= formData.salary.value %>"
                                     placeholder="* Salariu lunar net in LEI" style="<%= formData.salary.style %>" maxlength="100"/> 
                             </div>
                              <div class="form-group">
-                                <input list="jobLocations" name="jobLocation" class="form-control" value="<%= formData.jobLocation.value %>"
+                                <input id="jobLocation" name="jobLocation" class="form-control" value="<%= formData.jobLocation.value %>"
                                     placeholder="* Oras" style="<%= formData.jobLocation.style %>" maxlength="100"/>
                             </div>
                             <div class="form-group">
@@ -311,10 +293,135 @@
     <!-- Table Sorter -->
     <script src="assets/js/jquery.tablesorter.js"></script>
     <script src="assets/js/jquery.tablesorter.min.js"></script>
+    <!--  Auto-Complete Script --> 
+    <script src="assets/js/jquery.auto-complete.js"></script>
+
     <script>
+
+
         $(document).ready(function() 
         { 
+            var companyNames =[];
+            var positions = [];
+            var locations = [];
+
+            $.ajax({
+                type: "GET",
+                url: "/data", 
+                success: function (data) {
+                    for(index = 0; index < data.companyNames.length; index++) {
+                        companyNames.push(data.companyNames[index].companyName);
+                    }
+
+                    for(index = 0; index < data.positions.length; index++) {
+                        positions.push(data.positions[index].position);
+                    }
+
+                    for(index = 0; index < data.jobLocations.length; index++) {
+                        locations.push(data.jobLocations[index].location);
+                    }
+                    
+                    $('#searchLocation').autoComplete({
+                        minChars: 1,
+                        source: function (term, suggest) {
+                            term = term.toLowerCase();
+
+                            var suggestions = [];
+                            var choices = locations;
+                           
+                            for (i=0;i<choices.length;i++)
+                                    if (~choices[i].toLowerCase().indexOf(term)) 
+                                        suggestions.push(choices[i]);
+                            
+                            suggest(suggestions);
+                        }
+                    });
+
+                     $('#jobLocation').autoComplete({
+                        minChars: 1,
+                        source: function (term, suggest) {
+                            term = term.toLowerCase();
+
+                            var suggestions = [];
+                            var choices = locations;
+                            
+                            for (i=0;i<choices.length;i++)
+                                    if (~choices[i].toLowerCase().indexOf(term)) 
+                                        suggestions.push(choices[i]);
+                            
+                            suggest(suggestions);
+                        }
+                    });
+
+                    $('#searchPosition').autoComplete({
+                        minChars: 1,
+                        source: function (term, suggest) {
+                            term = term.toLowerCase();
+
+                            var suggestions = [];
+                            var choices = positions;
+                            
+                            for (i=0;i<choices.length;i++)
+                                    if (~choices[i].toLowerCase().indexOf(term)) 
+                                        suggestions.push(choices[i]);
+                            
+                            suggest(suggestions);
+                        }
+                    });
+
+                    $('#position').autoComplete({
+                        minChars: 1,
+                        source: function (term, suggest) {
+                            term = term.toLowerCase();
+
+                            var suggestions = [];
+                            var choices = positions;
+                            
+                            for (i=0;i<choices.length;i++)
+                                    if (~choices[i].toLowerCase().indexOf(term)) 
+                                        suggestions.push(choices[i]);
+                            
+                            suggest(suggestions);
+                        }
+                    });
+
+                    $('#searchCompanyName').autoComplete({
+                        minChars: 1,
+                        source: function (term, suggest) {
+                            term = term.toLowerCase();
+
+                            var suggestions = [];
+                            var choices = companyNames;
+                            
+                            for (i=0;i<choices.length;i++)
+                                    if (~choices[i].toLowerCase().indexOf(term)) 
+                                        suggestions.push(choices[i]);
+                            
+                            suggest(suggestions);
+                        }
+                    });
+
+                    $('#companyName').autoComplete({
+                        minChars: 1,
+                        source: function (term, suggest) {
+                            term = term.toLowerCase();
+
+                            var suggestions = [];
+                            var choices = companyNames;
+                            
+                            for (i=0;i<choices.length;i++)
+                                    if (~choices[i].toLowerCase().indexOf(term)) 
+                                        suggestions.push(choices[i]);
+                            
+                            suggest(suggestions);
+                        }
+                    });
+                }
+            });
+
+
             $("#companyTable").tablesorter(); 
+
         }); 
     </script>
 
