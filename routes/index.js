@@ -208,7 +208,9 @@ function processIndex(request, response) {
                 
                 if(searchResults.length == 0) {
                     showTable = 'none';
-                    searchMessage = 'Nu s-au gasit rezultate!'
+                    searchMessage = 'Nu s-au gasit rezultate!';
+
+                    
                 }
                 else {
                     showTable = '';
