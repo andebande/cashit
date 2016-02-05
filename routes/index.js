@@ -26,6 +26,25 @@ function stripString(str) {
     return str.trim().toUpperCase().substring(0,100);
 }
 
+function getCurrentDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; 
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+
+    return today;
+}
+
 function processIndex(request, response) {
     console.log(request.body);
     var companyNames = {};
@@ -111,12 +130,12 @@ function processIndex(request, response) {
         var jobLocation = stripString(request.body.jobLocation);
         var isPFA = (request.body.isPFA == 'on');
         var hasDiploma = (request.body.hasDiploma == 'on');
-        var year = new Date().getFullYear();
+        var year = getCurrentDate();
         var submitterIP = '0'; //request.connection.remoteAddress 
         
         var query = util.format("INSERT INTO salaries(salary, companyName, position, location, yearsOfExperience, isPFA, hasDiploma, year, submitterIP" 
                     + ")VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s);",
-                    salary, formatString(companyName), formatString(position), formatString(jobLocation), yearsOfExperience, isPFA, hasDiploma, year, submitterIP);
+                    salary, formatString(companyName), formatString(position), formatString(jobLocation), yearsOfExperience, isPFA, hasDiploma, formatString(year), submitterIP);
         console.log(query);
         if (isValidForm == true) {   
             message.value = 'Salariul a fost salvat ✓';
