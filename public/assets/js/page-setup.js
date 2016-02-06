@@ -119,4 +119,8 @@
 
             $("#companyTable").tablesorter(); 
 
+            $('#jobTags').tagit({
+                availableTags: []
+            });
+
 }); 
