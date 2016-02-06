@@ -30,6 +30,11 @@
     <link href="assets/css/jquery.auto-complete.css" rel="stylesheet" />   
     <!-- Google	Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+    <!--Tag It CSS -->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+    <link href="assets/css/jquery.tagit.css" rel="stylesheet">
+    <link href="assets/css/tagit.ui-zendesk.css" rel="stylesheet">
+
 
     <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -165,12 +170,13 @@
                         </div>  
                         <br>
                         <div class="form-group">
-                            <table width="95%" style="display:<%= showTable%>;" align="center" id="companyTable">
+                            <table width="100%" style="display:<%= showTable%>;" align="center" id="companyTable">
                             <thead>
                                 <tr>
                                     <th style="text-align:center;">Companie ▲ ▼</th>
                                     <th style="text-align:center;">Salariu lunar (NET in lei) ▲ ▼</th>
                                     <th style="text-align:center;">Pozitie ▲ ▼</th>
+                                    <th style="text-align:center;">Ani experienta ▲ ▼</th>
                                     <th style="text-align:center;">Oras ▲ ▼</th>
                                     <th style="text-align:center;">PFA ▲ ▼</th>
                                     <th style="text-align:center;">Cu Diploma ▲ ▼</th>
@@ -182,6 +188,7 @@
                                         <td style="text-align:center;"><%= searchResults[index].companyName %></td>
                                         <td style="text-align:center;"><%= searchResults[index].salary %></td>
                                         <td style="text-align:center;"><%= searchResults[index].position %></td>
+                                        <td style="text-align:center;"><%= searchResults[index].yearsOfExperience %></td>
                                         <td style="text-align:center;"><%= searchResults[index].location %></td>
                                         <td style="text-align:center;">
                                             <%
@@ -251,6 +258,10 @@
                                     placeholder="* Ani Experienta" style="<%= formData.experience.style %>" maxlength="100"/>
                             </div>
                             <div class="form-group">
+                                <input type="text" id="jobTags" name="jobTags" class="form-control"
+                                    placeholder="Cuvinte cheie" maxlength="100"/>
+                            </div>
+                            <div class="form-group">
                                 <table width ="30%">
                                     <tr align="center">
                                     <td align="center">
@@ -297,6 +308,8 @@
     <script src="assets/js/jquery.auto-complete.js"></script>
     <!--  Page-Setup Script --> 
     <script src="assets/js/page-setup.js"></script>
-
+    <!-- Tag It Script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" ></script>
+    <script src="assets/js/tag-it.js"></script>
 </body>
 </html>

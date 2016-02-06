@@ -1,0 +1,64 @@
+
+/* Optional scoped theme for tag-it which mimics the zendesk widget. */
+
+
+ul.tagit {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #C6C6C6;
+    background: inherit;
+    border-radius: 4px;
+}
+
+ul.tagit li.tagit-choice {
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 1px solid #CAD8F3;
+
+    background: none;
+    background-color: #5BC0DE;
+
+    font-weight: normal;
+}
+ul.tagit li.tagit-choice .tagit-label:not(a) {
+    color: #ffffff;
+}
+ul.tagit li.tagit-choice a.tagit-close {
+    text-decoration: none;
+}
+ul.tagit li.tagit-choice .tagit-close {
+    right: .4em;
+}
+ul.tagit li.tagit-choice .ui-icon {
+    display: none;
+}
+ul.tagit li.tagit-choice .tagit-close .text-icon {
+    display: inline;
+    color: #ffffff;
+}
+ul.tagit li.tagit-choice:hover, ul.tagit li.tagit-choice.remove {
+    background-color: #1C2B4B;
+    border-color: #ffffff;
+}
+ul.tagit li.tagit-choice a.tagLabel:hover,
+ul.tagit li.tagit-choice a.tagit-close .text-icon:hover {
+    color: #ffffff;
+}
+ul.tagit input[type="text"] {
+    background: none;
+    color: #ffffff;
+
+    ::-moz-placeholder {
+        color: #777;
+        opacity: 1;
+    }
+    
+    :-ms-input-placeholder {
+        color: #777;
+    }
+    
+    ::-webkit-input-placeholder {
+        color: #777;
+    }
+}
