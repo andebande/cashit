@@ -48,6 +48,7 @@ function getCurrentDate() {
 
 function processIndex(request, response) {
 
+    var tags = [];
     var companyNames = {};
     var positions = {};
     var jobLocations = {};
@@ -171,14 +172,14 @@ function processIndex(request, response) {
                     for (var index = 0; index < jobTags.length; index++) {
                         if (isValidString(jobTags[index]) && jobTags[index] != '') {
 
-                            query = "INSERT INTO tags(name) VALUES (\'" + jobTags[index] + "\');";
+                            query = "INSERT INTO tags(name) VALUES (\'" + stripString(jobTags[index]) + "\');";
                         
                             connection.query(query, function(error, result) {
                                 done();
                             });
-                            console.log(result);
+                           
                             query = "INSERT INTO salaries_cross_tags (salary_id, tag_id) SELECT " + formatString(result.insertId) + 
-                                ", t.id FROM tags AS t WHERE t.name=" + formatString(jobTags[index]) + ";";
+                                ", t.id FROM tags AS t WHERE t.name=" + formatString(stripString(jobTags[index])) + ";";
                             console.log(query);
                             connection.query(query, function(error, result) {
                                 if (error) {
@@ -257,7 +258,7 @@ function processIndex(request, response) {
             query = "SELECT * FROM salaries;";
 
         }
-        
+
         if(executeQuery == true)
         {
             connection.query(query, function(error, result) {
@@ -276,10 +277,34 @@ function processIndex(request, response) {
                 else {
                     showTable = '';
                     searchMessage = '';
+
+                    done = after(1 + searchResults.length, finished);
+
+                    for (var index = 0; index < searchResults.length; index++) {
+
+                       
+
+                        query = "SELECT name FROM tags WHERE id IN (SELECT tag_id FROM salaries_cross_tags WHERE salary_id =" 
+                            + formatString(searchResults[index].id) + ");";
+
+                        connection.query(query, function(error, result) {
+                            if (error) {
+                                console.log('An error has occcurred: %s', error);
+                                tags.push([]);
+                            } 
+                            else
+                            {
+                               tags.push(JSON.parse(JSON.stringify(result)));
+                            }
+                               
+                            done();
+                        });
+                    }
                 }
 
                 done();
             });
+
         }
         else {
             done();
@@ -290,6 +315,23 @@ function processIndex(request, response) {
     }
     
     function finished() {
+
+        for (var index = 0; index < tags.length; index++) {
+            if (tags[index].length > 0)
+            {
+                searchResults[index].tags = '';
+
+                for (var i = 0; i < tags[index].length; i++) {
+                    searchResults[index].tags += tags[index][i].name + " ";
+                }
+            }
+            else
+            {
+                searchResults[index].tags = ' - ';
+            }
+        }
+
+
        response.render('index', {
             error: '',
             submitMessage: message,

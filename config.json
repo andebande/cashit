@@ -2,8 +2,8 @@
     "databaseInformation":
     {
         "host": "127.0.0.1",
-        "user": "mac",
-        "password": "pass",
+        "user": "root",
+        "password": "password",
         "database": "cash_it"
     }
 }

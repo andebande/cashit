@@ -117,7 +117,12 @@
                 }
             });
 
-            $("#companyTable").tablesorter(); 
+            $("#companyTable").tablesorter();
+
+            if(document.getElementById('companyTable').style.display != 'none') {
+                console.log("DA TATA");
+                $("#companyTable").tablesorterPager({container: $("#pager"), size:15}); 
+            }
 
             $('#jobTags').tagit({
                 availableTags: []

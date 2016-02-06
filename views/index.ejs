@@ -26,6 +26,8 @@
     <link href="assets/css/flexslider.css" rel="stylesheet" />
     <!-- CUSTOM STYLE CSS -->
     <link href="assets/css/style.css" rel="stylesheet" /> 
+    <!-- Table Sorter Pager -->
+    <link href="assets/css/jquery.tablesorter.pager.css" rel="stylesheet" /> 
     <!-- EASY AUTOCOMPLETE -->
     <link href="assets/css/jquery.auto-complete.css" rel="stylesheet" />   
     <!-- Google	Fonts -->
@@ -168,18 +170,18 @@
                                 </tr>
                             </table>
                         </div>  
-                        <br>
                         <div class="form-group">
                             <table width="100%" style="display:<%= showTable%>;" align="center" id="companyTable">
                             <thead>
                                 <tr>
                                     <th style="text-align:center;">Companie ▲ ▼</th>
-                                    <th style="text-align:center;">Salariu lunar (NET in lei) ▲ ▼</th>
+                                    <th style="text-align:center;">Salariu (NET in lei) ▲ ▼</th>
                                     <th style="text-align:center;">Pozitie ▲ ▼</th>
                                     <th style="text-align:center;">Ani experienta ▲ ▼</th>
                                     <th style="text-align:center;">Oras ▲ ▼</th>
                                     <th style="text-align:center;">PFA ▲ ▼</th>
-                                    <th style="text-align:center;">Cu Diploma ▲ ▼</th>
+                                    <th style="text-align:center;">Absolvent ▲ ▼</th>
+                                    <th style="text-align:center;">Cuvinte cheie ▲ ▼</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -208,12 +210,25 @@
                                             %>
                                             <%= hasDiploma %>
                                         </td>
+                                        <td style="text-align:center;"><%= searchResults[index].tags %></td>
                                 </tr>
                                 <% } %>
                             </tbody>
                             </table>
                         </div>
-                        <div class="for-group">
+                        <div id="pager" class="form-group" align="center" style="display:<%= showTable%>;">
+                           <form>
+                                <img src="assets/img/first.png" class="pager first"/>
+                                <img src="assets/img/prev.png" class="pager prev"/>
+                                <input type="text" style="display:none;" class="pager pagedisplay"/>
+                                <img src="assets/img/next.png" class="pager next"/>
+                                <img src="assets/img/last.png" class="pager last"/>
+                                <select class="pager pagesize" style="display:none;">
+                                    <option selected="selected"  value="15"></option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="form-group">
                                 <p align="center"><%= searchMessage %></p>
                         </div>
                     </form>
@@ -303,7 +318,7 @@
     <script src="assets/js/custom.js"></script>
     <!-- Table Sorter -->
     <script src="assets/js/jquery.tablesorter.js"></script>
-    <script src="assets/js/jquery.tablesorter.min.js"></script>
+    <script src="assets/js/jquery.tablesorter.pager.js"></script>
     <!--  Auto-Complete Script --> 
     <script src="assets/js/jquery.auto-complete.js"></script>
     <!--  Page-Setup Script --> 

@@ -22,7 +22,7 @@
 					if(o.offset) {
 						c.container.css({
 							top: o.offset().top + o.height() + 'px',
-							position: 'absolute'
+							
 						});
 					}
 					c.pagerPositionSet = true;
@@ -122,7 +122,7 @@
 			};
 			
 			this.defaults = {
-				size: 10,
+				size: 15,
 				offset: 0,
 				page: 0,
 				totalRows: 0,
