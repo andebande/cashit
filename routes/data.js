@@ -1,11 +1,13 @@
 var util = require('util');
 var mysql = require('mysql');
 
+
+var config = require(__dirname + "/../config.json");
 var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'password',
-    database: 'cash_it'
+    host: config.databaseInformation.host,
+    user: config.databaseInformation.user,
+    password: config.databaseInformation.password,
+    database: config.databaseInformation.database,
 });
 
 function after(n, func) {

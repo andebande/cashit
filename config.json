@@ -1,0 +1,9 @@
+{
+    "databaseInformation":
+    {
+        "host": "127.0.0.1",
+        "user": "mac",
+        "password": "pass",
+        "database": "cash_it"
+    }
+}
