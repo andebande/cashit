@@ -68,6 +68,8 @@
             that.sc.on('mouseenter', '.autocomplete-suggestion', function (){
                 $('.autocomplete-suggestion.selected').removeClass('selected');
                 $(this).addClass('selected');
+
+               
             });
 
             that.sc.on('mousedown', '.autocomplete-suggestion', function (e){
@@ -105,6 +107,8 @@
             }
 
             that.on('keydown.autocomplete', function(e){
+
+
                 // down (40), up (38)
                 if ((e.which == 40 || e.which == 38) && that.sc.html()) {
                     var next, sel = $('.autocomplete-suggestion.selected', that.sc);
@@ -124,7 +128,7 @@
                 // enter or tab
                 else if (e.which == 13 || e.which == 9) {
                     var sel = $('.autocomplete-suggestion.selected', that.sc);
-                    if (sel.length && that.sc.is(':visible')) { o.onSelect(e, sel.data('val'), sel); setTimeout(function(){ that.sc.hide(); }, 20); }
+                    if (sel.length && that.sc.is(':visible')) {  e.preventDefault(); o.onSelect(e, sel.data('val'), sel); setTimeout(function(){ that.sc.hide(); }, 20); }
                 }
             });
 
