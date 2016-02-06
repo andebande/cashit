@@ -170,10 +170,11 @@
                                 </tr>
                             </table>
                         </div>  
+                        <br>
                         <div class="form-group">
                             <table width="100%" style="display:<%= showTable%>;" align="center" id="companyTable">
                             <thead>
-                                <tr>
+                                <tr style="font-size:12px;">
                                     <th style="text-align:center;">Companie ▲ ▼</th>
                                     <th style="text-align:center;">Salariu (NET in lei) ▲ ▼</th>
                                     <th style="text-align:center;">Pozitie ▲ ▼</th>
@@ -186,7 +187,8 @@
                             </thead>
                             <tbody>
                                 <% for (var index = 0; index < searchResults.length; index++)  { %>
-                                <tr>
+                                <!-- style="border-bottom: 1px solid #ccc; font-size:12px;" -->
+                                <tr style="font-size:12px;">
                                         <td style="text-align:center;"><%= searchResults[index].companyName %></td>
                                         <td style="text-align:center;"><%= searchResults[index].salary %></td>
                                         <td style="text-align:center;"><%= searchResults[index].position %></td>
