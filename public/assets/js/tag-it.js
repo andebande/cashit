@@ -31,7 +31,7 @@
             allowDuplicates   : false,
             caseSensitive     : true,
             fieldName         : 'tags',
-            placeholderText   : ' Cuvinte cheie',   // Sets `placeholder` attr on input field.
+            placeholderText   : ' Cuvinte cheie (Ex: C++ C# Rails Python Java)',   // Sets `placeholder` attr on input field.
             readOnly          : false,  // Disables editing.
             removeConfirmation: false,  // Require confirmation to remove tags.
             tagLimit          : null,   // Max number of tags allowed (null for unlimited).
@@ -134,6 +134,7 @@
 
             if (this.options.placeholderText) {
                 this.tagInput.attr('placeholder', this.options.placeholderText);
+                
             }
 
             if (!this.options.autocomplete.source) {
@@ -569,7 +570,7 @@
 
             if(this._tags().length == 0)
             {
-                this.options.placeholderText = ' Cuvinte cheie';
+                this.options.placeholderText = ' Cuvinte cheie (Ex: C++ C# Rails Python Java)';
                 this.tagInput.attr('placeholder', this.options.placeholderText);
             }
 
