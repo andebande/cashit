@@ -147,7 +147,7 @@
             <div class="row text-center">
                 <div>
                     <h1 data-scroll-reveal="enter from the bottom after 0.1s" class="header-line">CAUTA SALARII </h1>
-                    <form action="/index#view-salaries-sec" method="post" autocomplete="off">
+                    <form id="searchForm" action="/index#view-salaries-sec" method="post" autocomplete="off">
                         <div class="form-group">
                             <table width="70%" class="tablesorter" id="resultTable" align="center">
                                 <tr>
@@ -250,7 +250,7 @@
                 
                 <div class="row set-row-pad"  data-scroll-reveal="enter from the bottom after 0.5s" >
                     <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                        <form action="/index#add-salary-sec" method="post" autocomplete="off">
+                        <form id="addForm" action="/index#add-salary-sec" method="post" autocomplete="off">
                             <div class="for-group">
                                 <p align="center" style="<%= submitMessage.style %>"><%= submitMessage.value %></p>
                             </div>
