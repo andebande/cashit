@@ -206,7 +206,7 @@ h1::after {
   ===================================*/
 
 #view-salaries-sec {
-    background-color: #000;
+    background-color: #000000;
     color: #fff;
 }
 
@@ -218,7 +218,7 @@ h1::after {
     font-weight:700;
 }
 .view-salaries-div {
-    padding: 30px;
+    
 }
 
     .view-salaries-div hr {
@@ -279,3 +279,4 @@ h1::after {
     color:#fff;
     font-size:15px;
 }
+

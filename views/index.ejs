@@ -29,7 +29,9 @@
     <!-- Table Sorter Pager -->
     <link href="assets/css/jquery.tablesorter.pager.css" rel="stylesheet" /> 
     <!-- EASY AUTOCOMPLETE -->
-    <link href="assets/css/jquery.auto-complete.css" rel="stylesheet" />   
+    <link href="assets/css/jquery.auto-complete.css" rel="stylesheet" />  
+    <!-- TABLESORTER CSS -->
+    <link href="assets/css/theme.dark.css" rel="stylesheet" />    
     <!-- Google	Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
     <!--Tag It CSS -->
@@ -171,18 +173,18 @@
                             </table>
                         </div>  
                         <br>
-                        <div class="form-group">
-                            <table width="100%" style="display:<%= showTable%>;" align="center" id="companyTable">
+                        <div style="margin: 0; padding: 0;">
+                            <table width="100%" style="display:<%= showTable%>;" align="center" id="companyTable" class="demo tablesorter-dark">
                             <thead>
                                 <tr style="font-size:12px;">
-                                    <th style="text-align:center;">Companie ▲ ▼</th>
-                                    <th style="text-align:center;">Salariu (NET in lei) ▲ ▼</th>
-                                    <th style="text-align:center;">Pozitie ▲ ▼</th>
-                                    <th style="text-align:center;">Ani experienta ▲ ▼</th>
-                                    <th style="text-align:center;">Oras ▲ ▼</th>
-                                    <th style="text-align:center;">PFA ▲ ▼</th>
-                                    <th style="text-align:center;">Absolvent ▲ ▼</th>
-                                    <th style="text-align:center;">Cuvinte cheie ▲ ▼</th>
+                                    <th style="text-align:center;">Companie</th>
+                                    <th style="text-align:center;">Salariu (NET in lei)</th>
+                                    <th style="text-align:center;">Pozitie</th>
+                                    <th style="text-align:center;">Ani experienta</th>
+                                    <th style="text-align:center;">Oras</th>
+                                    <th style="text-align:center;">PFA</th>
+                                    <th style="text-align:center;">Absolvent</th>
+                                    <th style="text-align:center;">Cuvinte cheie</th>
                                 </tr>
                             </thead>
                             <tbody>
