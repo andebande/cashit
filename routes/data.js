@@ -10,6 +10,13 @@ var connection = mysql.createConnection({
     database: config.databaseInformation.database,
 });
 
+var second_connection = mysql.createConnection({
+    host: config.databaseInformation2.host,
+    user: config.databaseInformation2.user,
+    password: config.databaseInformation2.password,
+    database: config.databaseInformation2.database,
+});
+
 function after(n, func) {
     if (typeof func != 'function') {
         throw new TypeError(FUNC_ERROR_TEXT);
