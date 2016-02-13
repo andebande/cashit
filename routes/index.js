@@ -15,6 +15,13 @@ var connection = mysql.createConnection({
     database: config.databaseInformation.database,
 });
 
+var second_connection = mysql.createConnection({
+    host: config.databaseInformation2.host,
+    user: config.databaseInformation2.user,
+    password: config.databaseInformation2.password,
+    database: config.databaseInformation2.database,
+});
+
 var errorStyle = 'border-color: #E5503F;';
 
 function isPositiveInteger(str) {
@@ -153,8 +160,18 @@ function processIndex(request, response) {
         
         console.log(query);
 
+        if (parseInt(salary) > 50000) {
+            isValidForm = false;
+        }
+        if (parseInt(yearsOfExperience) > 70) {
+            isValidForm = false;
+        }
+        if (parseInt(salary) % 10 != 0) {
+            isValidForm = false;
+        }        
+
         if (isValidForm == true) {   
-            message.value = 'Salariul a fost salvat ✓';
+            message.value = 'Salariul a fost salvat si va fi afisat dupa o aprobare de catre un administrator ✓';
             message.style = 'color:#00b386;';
 
             goToSection = '#add-salary-sec';
@@ -170,7 +187,7 @@ function processIndex(request, response) {
 
             };
 
-            connection.query(query, function(error, result) {
+            second_connection.query(query, function(error, result) {
                 if (error) {
                     console.log('An error has occcurred: %s', error);
                 } 
@@ -183,14 +200,14 @@ function processIndex(request, response) {
 
                             query = "INSERT INTO tags(name) VALUES (\'" + stripString(jobTags[index]) + "\');";
                         
-                            connection.query(query, function(error, result) {
+                            second_connection.query(query, function(error, result) {
                                 done();
                             });
                            
                             query = "INSERT INTO salaries_cross_tags (salary_id, tag_id) SELECT " + formatString(result.insertId) + 
                                 ", t.id FROM tags AS t WHERE t.name=" + formatString(stripString(jobTags[index])) + ";";
                             console.log(query);
-                            connection.query(query, function(error, result) {
+                            second_connection.query(query, function(error, result) {
                                 if (error) {
                                     console.log('An error has occcurred: %s', error);
                                 } 
