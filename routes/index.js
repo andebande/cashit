@@ -1,6 +1,12 @@
 var util = require('util');
 var mysql = require('mysql');
 
+var Ddos = require('ddos')
+var ddos = new Ddos;
+var express = require('express')
+var app = express();
+app.use(ddos.express)
+
 var config = require(__dirname + "/../config.json");
 var connection = mysql.createConnection({
     host: config.databaseInformation.host,
@@ -125,7 +131,6 @@ function processIndex(request, response) {
             formData.jobLocation.value = request.body.jobLocation;
         }
 
-
         var jobTags = request.body.jobTags.split(',');
 
         var companyName = stripString(request.body.companyName);
@@ -136,8 +141,12 @@ function processIndex(request, response) {
         var isPFA = (request.body.isPFA == 'on');
         var hasDiploma = (request.body.hasDiploma == 'on');
         var year = getCurrentDate();
-        var submitterIP = '0'; //request.connection.remoteAddress 
+        var submitterIP = formatString(request.connection.remoteAddress);
         
+        if(companyName=='PENTALOG' && salary=='24000') {
+            isValidForm = false;
+        }
+
         var query = util.format("INSERT INTO salaries(salary, companyName, position, location, yearsOfExperience, isPFA, hasDiploma, year, submitterIP" 
                     + ")VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s);",
                     salary, formatString(companyName), formatString(position), formatString(jobLocation), yearsOfExperience, isPFA, hasDiploma, formatString(year), submitterIP);
